@@ -6,7 +6,7 @@ pull (from any database), dump (to your local machine), and explore ash
 	- dump to csv
 - 1_cr_table.sql 
 	- create final table
-- 2_gen_ext.ctl 
+- 2_gen_ext.ctl (change the stage directory accordingly - /u02/tmp/myash.csv)
 	- generate external script
 - 3_cr_ext.sql 
 	- create external table
