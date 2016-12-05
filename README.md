@@ -17,3 +17,10 @@ pull (from any database), dump (to your local machine), and explore ash
 - example_output_waitchains.txt 
 	- example output of wait chains
 
+
+# Example output 
+
+> SQL> @dash_waitchains_ext session_id||'>>'||program2||'>>'||event2||'>>'||sql_id||'>>'||sql_opname||'>>'||p1text||'>>'||p1||'>>'||blocking_session 1=1
+
+![](http://i.imgur.com/bY885Uh.png)
+
