@@ -24,3 +24,7 @@ pull (from any database), dump (to your local machine), and explore ash
 
 ![](http://i.imgur.com/bY885Uh.png)
 
+
+# HOWTO graph
+
+![](http://i.imgur.com/WHUCK4z.gif)
