@@ -3,6 +3,9 @@
 -- DataRange1: SYSDATE-2 
 -- DataRange2: SYSDATE
 
+define _start_time='05/10/2017 15:00'
+define _end_time='05/10/2017 16:00'
+
 set feedback off pages 0 term off head on und off trimspool on 
 set arraysize 5000
 set termout off
@@ -152,6 +155,7 @@ DELTA_INTERCONNECT_IO_BYTES ||','|| PGA_ALLOCATED ||','|| TEMP_SPACE_ALLOCATED
 From 
 (select trim('&_instname') INSTNAME, TO_CHAR(SAMPLE_TIME,'MM/DD/YY HH24:MI:SS') TM, a.*
 from DBA_HIST_ACTIVE_SESS_HISTORY a)
-where sample_time between SYSDATE-8 and SYSDATE
+-- where sample_time between SYSDATE-8 and SYSDATE
+where sample_time between to_date('&_start_time', 'MM/DD/YY HH24:MI') and to_date('&_end_time', 'MM/DD/YY HH24:MI')
 Order by SAMPLE_TIME, session_id asc;
 spool off;
