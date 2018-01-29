@@ -10,8 +10,8 @@ pull (from any database), dump (to your local machine), and explore ash
 	- generate external script
 - 3_cr_ext.sql 
 	- create external table
-- 4_initial_insert.sql 
-	- insert from external table to final table (you can skip this)
+- 4_initial_insert.sql (you can skip this - still work in progress)
+	- insert from external table to final table 
 - 5_dash_waitchains_ext.sql (change the date filters accordingly) 
 	- query wait chains from external table
 - example_output_waitchains.txt 
