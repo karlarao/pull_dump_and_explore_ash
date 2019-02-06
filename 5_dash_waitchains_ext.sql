@@ -46,7 +46,7 @@ ash AS (SELECT /*+ QB_NAME(ash) LEADING(a) USE_HASH(u) SWAP_JOIN_INPUTS(u) */
               TRIM(DBID) AS                            DBID                                ,
               TRIM(SNAP_ID) AS                         SNAP_ID                             ,
               TRIM(SAMPLE_ID) AS                       SAMPLE_ID                           ,
-              TM AS                              TM                                  ,
+              TM AS                                    TM                                  ,
               TRIM(SAMPLE_TIME) AS                     SAMPLE_TIME                         ,
               TRIM(SESSION_ID) AS                      SESSION_ID                          ,
               TRIM(SESSION_SERIAL#) AS                 SESSION_SERIAL#                     ,
