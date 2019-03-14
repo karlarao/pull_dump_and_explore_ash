@@ -223,6 +223,8 @@ select * from
 select sql_id,
        sql_exec_id,
        sql_plan_hash_value,
+       module,
+       program,
            CAST(sql_exec_start AS TIMESTAMP) sql_exec_start,
        run_time run_time_timestamp,
  (EXTRACT(HOUR FROM run_time) * 3600
@@ -233,13 +235,15 @@ select
        sql_id,
        sql_exec_id,
        sql_plan_hash_value,
+       module,
+       program,
        max(tms) sql_exec_start,
        max(tm - tms) run_time
 from
        ash
 where tms is not null
-group by sql_id,sql_exec_id,sql_plan_hash_value
-order by 4 desc
+group by sql_id,sql_exec_id,sql_plan_hash_value,module,program
+order by 6 desc
 )
 where rownum < 1000
 order by sql_exec_start asc

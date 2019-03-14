@@ -3,16 +3,18 @@ drop table dump_dba_hist_ash_ext purge;
 -- the external table
         -- CREATE DIRECTORY statements needed for files
         ------------------------------------------------------------------------
-CREATE OR REPLACE DIRECTORY SYS_SQLLDR_XT_TMPDIR_00002 AS '/home/oracle/tmp3/pull_dump_and_explore_ash-master/ash/';
-CREATE OR REPLACE DIRECTORY SYS_SQLLDR_XT_TMPDIR_00000 AS '/home/oracle/tmp3/pull_dump_and_explore_ash-master/ash/';
+CREATE OR REPLACE DIRECTORY SYS_SQLLDR_XT_TMPDIR_00002 AS '/u02/tmp';
+CREATE OR REPLACE DIRECTORY SYS_SQLLDR_XT_TMPDIR_00000 AS '/u02/tmp/';
 
 
         -- CREATE TABLE statement for external table:
         ------------------------------------------------------------------------
-CREATE TABLE dump_dba_ash_ext
+CREATE TABLE dump_dba_hist_ash_ext
 (
   "INSTNAME" CHAR(255),
-  "INST_ID" CHAR(255),
+  "INSTANCE_NUMBER" CHAR(255),
+  "DBID" CHAR(255),
+  "SNAP_ID" CHAR(255),
   "SAMPLE_ID" CHAR(255),
   "TM" TIMESTAMP(3),
   "TMS" TIMESTAMP(3),
@@ -127,7 +129,11 @@ ORGANIZATION external
     (
       "INSTNAME" CHAR(255)
         TERMINATED BY ",",
-      "INST_ID" CHAR(255)
+      "INSTANCE_NUMBER" CHAR(255)
+        TERMINATED BY ",",
+      "DBID" CHAR(255)
+        TERMINATED BY ",",
+      "SNAP_ID" CHAR(255)
         TERMINATED BY ",",
       "SAMPLE_ID" CHAR(255)
         TERMINATED BY ",",

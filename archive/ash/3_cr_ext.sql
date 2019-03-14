@@ -3,8 +3,8 @@ drop table dump_dba_hist_ash_ext purge;
 -- the external table
         -- CREATE DIRECTORY statements needed for files
         ------------------------------------------------------------------------
-CREATE OR REPLACE DIRECTORY SYS_SQLLDR_XT_TMPDIR_00002 AS '/home/oracle/tmp3/pull_dump_and_explore_ash-master/ash/';
-CREATE OR REPLACE DIRECTORY SYS_SQLLDR_XT_TMPDIR_00000 AS '/home/oracle/tmp3/pull_dump_and_explore_ash-master/ash/';
+CREATE OR REPLACE DIRECTORY SYS_SQLLDR_XT_TMPDIR_00002 AS '/u02/tmp';
+CREATE OR REPLACE DIRECTORY SYS_SQLLDR_XT_TMPDIR_00000 AS '/u02/tmp/';
 
 
         -- CREATE TABLE statement for external table:

@@ -116,7 +116,9 @@ ash AS (SELECT
             (
               select
               TRIM(INSTNAME) AS                        INSTNAME                            ,
-              TRIM(INST_ID) AS                 INSTANCE_NUMBER                     ,
+              TRIM(INSTANCE_NUMBER) AS                 INSTANCE_NUMBER                     ,
+              TRIM(DBID) AS                            DBID                                ,
+              TRIM(SNAP_ID) AS                         SNAP_ID                             ,
               TRIM(SAMPLE_ID) AS                       SAMPLE_ID                           ,
               TM AS                                    TM                                  ,
               TMS AS                                   TMS                                  ,
@@ -213,7 +215,7 @@ ash AS (SELECT
               TRIM(DELTA_INTERCONNECT_IO_BYTES) AS     DELTA_INTERCONNECT_IO_BYTES         ,
               TRIM(PGA_ALLOCATED) AS                    PGA_ALLOCATED                      ,
               TRIM(TEMP_SPACE_ALLOCATED) AS            TEMP_SPACE_ALLOCATED                
-              from dump_dba_ash_ext 
+              from dump_dba_hist_ash_ext 
               ) a
        --  WHERE
        --      tm BETWEEN to_date('11/29/16 21:00', 'MM/DD/YY HH24:MI') AND to_date('11/29/16 23:30', 'MM/DD/YY HH24:MI')
@@ -241,7 +243,7 @@ where tms is not null
 group by sql_id,sql_exec_id,sql_plan_hash_value
 order by 4 desc
 )
-where rownum < 1000
+where rownum < 21
 order by sql_exec_start asc
 )
 where run_time_sec < &run_time_sec
@@ -256,7 +258,9 @@ ash AS (SELECT
             (
               select
               TRIM(INSTNAME) AS                        INSTNAME                            ,
-              TRIM(INST_ID) AS                 INSTANCE_NUMBER                     ,
+              TRIM(INSTANCE_NUMBER) AS                 INSTANCE_NUMBER                     ,
+              TRIM(DBID) AS                            DBID                                ,
+              TRIM(SNAP_ID) AS                         SNAP_ID                             ,
               TRIM(SAMPLE_ID) AS                       SAMPLE_ID                           ,
               TM AS                                    TM                                  ,
               TMS AS                                   TMS                                  ,
@@ -353,7 +357,7 @@ ash AS (SELECT
               TRIM(DELTA_INTERCONNECT_IO_BYTES) AS     DELTA_INTERCONNECT_IO_BYTES         ,
               TRIM(PGA_ALLOCATED) AS                    PGA_ALLOCATED                      ,
               TRIM(TEMP_SPACE_ALLOCATED) AS            TEMP_SPACE_ALLOCATED                
-              from dump_dba_ash_ext 
+              from dump_dba_hist_ash_ext 
               ) a
        --  WHERE
        --      tm BETWEEN to_date('11/29/16 21:00', 'MM/DD/YY HH24:MI') AND to_date('11/29/16 23:30', 'MM/DD/YY HH24:MI')

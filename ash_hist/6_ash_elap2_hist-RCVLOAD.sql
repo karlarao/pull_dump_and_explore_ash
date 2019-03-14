@@ -116,7 +116,9 @@ ash AS (SELECT
             (
               select
               TRIM(INSTNAME) AS                        INSTNAME                            ,
-              TRIM(INST_ID) AS                 INSTANCE_NUMBER                     ,
+              TRIM(INSTANCE_NUMBER) AS                 INSTANCE_NUMBER                     ,
+              TRIM(DBID) AS                            DBID                                ,
+              TRIM(SNAP_ID) AS                         SNAP_ID                             ,
               TRIM(SAMPLE_ID) AS                       SAMPLE_ID                           ,
               TM AS                                    TM                                  ,
               TMS AS                                   TMS                                  ,
@@ -213,10 +215,11 @@ ash AS (SELECT
               TRIM(DELTA_INTERCONNECT_IO_BYTES) AS     DELTA_INTERCONNECT_IO_BYTES         ,
               TRIM(PGA_ALLOCATED) AS                    PGA_ALLOCATED                      ,
               TRIM(TEMP_SPACE_ALLOCATED) AS            TEMP_SPACE_ALLOCATED                
-              from dump_dba_ash_ext 
+              from dump_dba_hist_ash_ext 
               ) a
-       --  WHERE
-       --      tm BETWEEN to_date('11/29/16 21:00', 'MM/DD/YY HH24:MI') AND to_date('11/29/16 23:30', 'MM/DD/YY HH24:MI')
+       WHERE
+            tm BETWEEN to_date('02/10/19 16:00', 'MM/DD/YY HH24:MI') AND to_date('02/10/19 23:59', 'MM/DD/YY HH24:MI')
+       AND ACTION = 'RSTR_RCVLOAD'
     )
 select * from 
 (
@@ -241,10 +244,10 @@ where tms is not null
 group by sql_id,sql_exec_id,sql_plan_hash_value
 order by 4 desc
 )
-where rownum < 1000
+--where rownum < 21
 order by sql_exec_start asc
 )
-where run_time_sec < &run_time_sec
+--where run_time_sec < &run_time_sec
 /
 PRO
 PRO ACTIVE_SESSION_HISTORY - ash_elap exec avg min max
@@ -256,7 +259,9 @@ ash AS (SELECT
             (
               select
               TRIM(INSTNAME) AS                        INSTNAME                            ,
-              TRIM(INST_ID) AS                 INSTANCE_NUMBER                     ,
+              TRIM(INSTANCE_NUMBER) AS                 INSTANCE_NUMBER                     ,
+              TRIM(DBID) AS                            DBID                                ,
+              TRIM(SNAP_ID) AS                         SNAP_ID                             ,
               TRIM(SAMPLE_ID) AS                       SAMPLE_ID                           ,
               TM AS                                    TM                                  ,
               TMS AS                                   TMS                                  ,
@@ -353,12 +358,12 @@ ash AS (SELECT
               TRIM(DELTA_INTERCONNECT_IO_BYTES) AS     DELTA_INTERCONNECT_IO_BYTES         ,
               TRIM(PGA_ALLOCATED) AS                    PGA_ALLOCATED                      ,
               TRIM(TEMP_SPACE_ALLOCATED) AS            TEMP_SPACE_ALLOCATED                
-              from dump_dba_ash_ext 
+              from dump_dba_hist_ash_ext 
               ) a
-       --  WHERE
-       --      tm BETWEEN to_date('11/29/16 21:00', 'MM/DD/YY HH24:MI') AND to_date('11/29/16 23:30', 'MM/DD/YY HH24:MI')
+        WHERE tm BETWEEN to_date('02/10/19 16:00', 'MM/DD/YY HH24:MI') AND to_date('02/10/19 23:59', 'MM/DD/YY HH24:MI')
+       AND ACTION = 'RSTR_RCVLOAD'
     )
-select sql_plan_hash_value,
+select sql_id, sql_plan_hash_value,
                 count(*),
         round(avg(EXTRACT(HOUR FROM run_time) * 3600
                     + EXTRACT(MINUTE FROM run_time) * 60
@@ -380,10 +385,11 @@ from  (
                ash
         where
                tms is not null
-               and sql_id = '&&sql_id.'
+               --and sql_id = '&&sql_id.'
         group by sql_id,sql_exec_id,sql_plan_hash_value
        )
-group by sql_plan_hash_value
+group by sql_id, sql_plan_hash_value
+order by 1,2,3,4
 /
 -- union all
 -- select  null,

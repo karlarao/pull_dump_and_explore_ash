@@ -241,7 +241,7 @@ where tms is not null
 group by sql_id,sql_exec_id,sql_plan_hash_value
 order by 4 desc
 )
-where rownum < 1000
+where rownum < 21
 order by sql_exec_start asc
 )
 where run_time_sec < &run_time_sec
