@@ -3,8 +3,8 @@
 -- DataRange1: SYSDATE-2 
 -- DataRange2: SYSDATE
 
-define _start_time='05/10/2017 15:00'
-define _end_time='05/10/2017 16:00'
+define _start_time='05/01/2019 15:00'
+define _end_time='06/20/2019 16:00'
 
 set feedback off pages 0 term off head on und off trimspool on 
 set arraysize 5000
