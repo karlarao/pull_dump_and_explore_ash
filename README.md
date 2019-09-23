@@ -20,6 +20,6 @@ pull (from any database), dump (to your local machine), and explore ash
 ![](http://i.imgur.com/bY885Uh.png)
 
 
-# HOWTO graph
+# HOWTO graph (myash*csv)
 
 ![](http://i.imgur.com/WHUCK4z.gif)
