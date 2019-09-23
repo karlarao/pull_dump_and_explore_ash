@@ -5,6 +5,11 @@ pull (from any database), dump (to your local machine), and explore ash
 - Go to https://github.com/karlarao/pull_dump_and_explore_ash/tree/master/ash for the general workflow/HOWTO 
 	- the DBA_HIST (historical) version of the tool is here https://github.com/karlarao/pull_dump_and_explore_ash/tree/master/ash_hist
 
+- This toolkit captures the following ASH goodies: 
+	- myash*csv (csv dump of ash data which can be graphed in tableau)
+	- waitchains_ext*sql (wait chains scripts)
+	- ash_elap*sql (get ash wall clock elapsed times)
+	- ashtop*sql (ashtop to get topn across ash dimensions)
 
 
 # Example output 
