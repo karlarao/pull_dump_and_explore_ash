@@ -11,6 +11,8 @@ CREATE OR REPLACE DIRECTORY SYS_SQLLDR_XT_TMPDIR_00000 AS '/home/oracle/tmp3/pul
         ------------------------------------------------------------------------
 CREATE TABLE dump_dba_ash_ext
 (
+  "DBNAME" CHAR(255),
+  "CON_ID" CHAR(255),
   "INSTNAME" CHAR(255),
   "INST_ID" CHAR(255),
   "SAMPLE_ID" CHAR(255),
@@ -125,6 +127,10 @@ ORGANIZATION external
     MISSING FIELD VALUES ARE NULL
     REJECT ROWS WITH ALL NULL FIELDS
     (
+      "DBNAME" CHAR(255)
+        TERMINATED BY ",",      
+      "CON_ID" CHAR(255)
+        TERMINATED BY ",",        
       "INSTNAME" CHAR(255)
         TERMINATED BY ",",
       "INST_ID" CHAR(255)
