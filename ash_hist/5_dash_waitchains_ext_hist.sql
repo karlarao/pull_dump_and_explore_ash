@@ -143,7 +143,7 @@ ash AS (SELECT /*+ QB_NAME(ash) LEADING(a) USE_HASH(u) SWAP_JOIN_INPUTS(u) */
               from dump_dba_hist_ash_ext 
               ) a
         WHERE
-            tm BETWEEN to_date('11/29/16 21:00', 'MM/DD/YY HH24:MI') AND to_date('11/29/16 23:30', 'MM/DD/YY HH24:MI')
+            tm BETWEEN to_date('03/05/21 03:00', 'MM/DD/YY HH24:MI') AND to_date('03/05/21 03:17', 'MM/DD/YY HH24:MI')
     ),
 ash_samples AS (SELECT DISTINCT trim(sample_id) sample_id FROM ash),
 ash_data AS (SELECT /*+ MATERIALIZE */ * FROM ash),
