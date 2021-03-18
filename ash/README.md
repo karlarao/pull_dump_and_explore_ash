@@ -11,6 +11,14 @@
 ```
 (on the scripts you can add/edit the WHERE tm BETWEEN filter)
 
+
+# get min max sample time
+select min(sample_time), max(sample_time)
+             from dump_dba_ash_ext
+        WHERE
+            tm BETWEEN to_date('03/05/21 03:00', 'MM/DD/YY HH24:MI') AND to_date('03/05/21 03:17', 'MM/DD/YY HH24:MI');
+
+
 # get the wait chains 
 ## by high level 
 @5_dash_waitchains_ext.sql  session_id||'>>'||instance_number||'>>'||program2||'>>'||event2||'>>'||sql_id||'>>'||sql_opname||'>>'||p1text||'>>'||p1||'>>'||blocking_session
